@@ -16,7 +16,7 @@ BOT_TOKEN = getenv("BOT_TOKEN", None)
 # Get your mongo url from cloud.mongodb.com
 MONGO_DB_URI = getenv("MONGO_DB_URI", None)
 
-DURATION_LIMIT_MIN = int(getenv("DURATION_LIMIT", 1700))
+DURATION_LIMIT_MIN = int(getenv("DURATION_LIMIT", 20000))
 
 # Chat id of a group for logging bot's activities
 LOG_GROUP_ID = int(getenv("LOG_GROUP_ID", "0"))
@@ -35,7 +35,7 @@ API_KEY = getenv("API_KEY", None) # Get This API KEY FROM OWNER: @SpYtAPIBot
 
 UPSTREAM_REPO = getenv(
     "UPSTREAM_REPO",
-    "https://github.com/DevloperSP/MusicSp",
+    "https://t.me/jp_network",
 )
 UPSTREAM_BRANCH = getenv("UPSTREAM_BRANCH", "main")
 GIT_TOKEN = getenv(
