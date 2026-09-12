@@ -56,6 +56,7 @@ def git():
             repo = Repo.init()
             if "origin" in repo.remotes:
                 origin = repo.remote("origin")
+                origin.set_url(UPSTREAM_REPO)
             else:
                 origin = repo.create_remote("origin", UPSTREAM_REPO)
             origin.fetch()
@@ -86,10 +87,13 @@ def git():
                 repo.heads[branch].checkout(True)
                 
             try:
-                repo.create_remote("origin", config.UPSTREAM_REPO)
+                if "origin" in repo.remotes:
+                    nrs = repo.remote("origin")
+                    nrs.set_url(config.UPSTREAM_REPO)
+                else:
+                    nrs = repo.create_remote("origin", config.UPSTREAM_REPO)
             except BaseException:
-                pass
-            nrs = repo.remote("origin")
+                nrs = repo.remote("origin")
             nrs.fetch(branch)
             try:
                 nrs.pull(branch)
@@ -100,3 +104,4 @@ def git():
             LOGGER(__name__).warning(f"Git auto-sync warning (continuing boot): {e}")
     except Exception as e:
         LOGGER(__name__).warning(f"Git setup skipped: {e}")
+        
